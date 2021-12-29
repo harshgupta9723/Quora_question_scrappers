@@ -88,6 +88,11 @@ def find_similarity_score(question_list, question):
         if 0.60 <= sim < 1 :
             similar_question.append(ques)
 
+    df = pd.DataFrame()
+    df['sim_Q'] = similar_question
+    df.drop_duplicates(subset='sim_Q', keep='first', inplace=True)     
+    similar_question = list(df['sim_Q'])
+
     return similar_question
 
 def main(question):
@@ -106,4 +111,4 @@ def sim_question():
     return jsonify(result)
     
 if __name__=="__main__":
-    app.run()
+    app.run(host="143.198.113.228",port=5090,debug=True)
