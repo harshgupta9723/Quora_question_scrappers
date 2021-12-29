@@ -12,7 +12,6 @@ import pandas as pd
 from flask import Flask,request,jsonify
 from flask import app
 
-from db import DB
 
 # # Downloading the stop words list
 nltk.download('stopwords')
