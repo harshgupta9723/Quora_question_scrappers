@@ -25,12 +25,16 @@ def question_data():
     '''
     Fetch questions data from the database
     '''
+    '''
     q_li = DB().fetch_Q()
     questions_list=[]
 
     for i in q_li:
         q = i[0]
         questions_list.append(q)
+    '''
+    df = pd.read_csv('related_q.csv')
+    questions_list = list(df['Questions'])
     
     return questions_list
 
