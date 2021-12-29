@@ -12,6 +12,8 @@ import pandas as pd
 from flask import Flask,request,jsonify
 from flask import app
 
+from db import DB
+
 # # Downloading the stop words list
 nltk.download('stopwords')
 # # Loading the stop words in english
@@ -20,9 +22,15 @@ stop_words = list(stopwords.words('english'))
 
 # replace this function by database function
 def question_data():
-    
-    main_data = pd.read_csv("/home/harsh/Quora_question_scrappers/questions.csv")
-    questions_list = main_data['Questions']
+    '''
+    Fetch questions data from the database
+    '''
+    q_li = DB().fetch_Q()
+    questions_list=[]
+
+    for i in q_li:
+        q = i[0]
+        questions_list.append(q)
     
     return questions_list
 
